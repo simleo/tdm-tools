@@ -60,6 +60,8 @@ def main(args):
     fs.create_directory(out_dir)
     for dt, path in get_images(args.in_dir):
         out_path = join(out_dir, f"{dt.strftime(OUT_FMT)}.png")
+        if not args.overwrite and fs.exists(out_path):
+            continue
         with io.open(path, "rb") as fi:
             with fs.open_file(out_path, "wb") as fo:
                 fo.write(fi.read())
@@ -69,4 +71,5 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("in_dir", metavar="INPUT_DIR")
     parser.add_argument("out_dir", metavar="OUTPUT_DIR")
+    parser.add_argument("--overwrite", action="store_true")
     main(parser.parse_args(sys.argv[1:]))
