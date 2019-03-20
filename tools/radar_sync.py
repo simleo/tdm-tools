@@ -41,6 +41,9 @@ import paramiko
 from pydoop import hdfs
 
 
+DEFAULT_SSH_PORT = 22
+
+
 class SSHClient():
     """
     Class that handles ssh/sftp remote connections and operations.
@@ -48,7 +51,7 @@ class SSHClient():
     def __init__(self,
                  username,
                  hostname,
-                 port=22,
+                 port=DEFAULT_SSH_PORT,
                  key_file=None,
                  root_dir='/'):
         self._hostname = hostname
@@ -200,7 +203,8 @@ def check_ssh_url(ssh_url):
             return (None, None, None, None)
 
         return (_match.group('user'), _match.group('host'),
-                int(_match.group('port')), _match.group('path'))
+                int(_match.group('port') or DEFAULT_SSH_PORT),
+                _match.group('path'))
 
     return (None, None, None, None)
 
