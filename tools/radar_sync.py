@@ -1,29 +1,27 @@
-#!/usr/bin/env python3
-"""Radar Sync
+# Copyright 2018-2019 CRS4
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
-This script performs a copy of meteorological images from an SFTP folder
+"""\
+Performs a copy of meteorological images from an SFTP folder
 to an HDFS one. The path for both the source and destination folders are
-compliant to the TDM folder convention for meteorological images:
+compliant with the TDM folder convention for meteorological images:
 
     <ROOT_DIR>/YYYY/MM/DD/
 
 Files are copied to HDFS only if the destination folder does not exist or the
-count of files contained differs from the one of the source folder. No hash or
-size check is performed.
-
-Copyright 2019 CRS4
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+file count differs from that of the source folder. No hash or size check is
+performed.
 """
 
 # pylint: disable=import-error, broad-except
